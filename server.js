@@ -1,7 +1,16 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var routes = require('server/routes');
+var mongoose = require('mongoose');
 
 var PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+app.use(bodyParser.json())
+
+routes(app);
 
 app.all('/*', function(req, res){
 	res.send('\
